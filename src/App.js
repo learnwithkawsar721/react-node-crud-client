@@ -34,7 +34,7 @@ function App() {
     }
     const data = { title, discription };
     axios
-      .post(`http://localhost:8080/todo/add`, data)
+      .post(`https://todo-croud.herokuapp.com/todo/add`, data)
       .then((result) => {
         setTodos([...todos, result.data.data]);
         e.target.reset();
@@ -46,12 +46,12 @@ function App() {
   // GET DATA
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/todo/`)
+      .get(`https://todo-croud.herokuapp.com/todo/`)
       .then((result) => setTodos(result.data.data));
   }, []);
   // DELETE TODO
   const deleteTodo = (id) => {
-    axios.delete(`http://localhost:8080/todo/${id}`).then((res) => {
+    axios.delete(`https://todo-croud.herokuapp.com/todo/${id}`).then((res) => {
       const newData = todos.filter((todo) => todo._id !== id);
       setTodos(newData);
     });
@@ -66,10 +66,10 @@ function App() {
       discription: discription || edit?.discription,
     };
     axios
-      .put(`http://localhost:8080/todo/${id}`, data)
+      .put(`https://todo-croud.herokuapp.com/todo/${id}`, data)
       .then((res) => {
         axios
-      .get(`http://localhost:8080/todo/`)
+      .get(`https://todo-croud.herokuapp.com/todo/`)
       .then((res) => setTodos(res.data.data));
       }
       );
@@ -78,7 +78,7 @@ function App() {
   // hendelEdit
   const hendelEdit = (id) => {
     axios
-      .get(`http://localhost:8080/todo/${id}`)
+      .get(`https://todo-croud.herokuapp.com/todo/${id}`)
       .then((res) => setEdit(res.data.data));
   };
   return (
